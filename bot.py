@@ -133,7 +133,7 @@ def main():
     updater.start_webhook(listen="0.0.0.0",
                       port=PORT,
                       url_path=TOKEN)
-    updater.bot.set_webhook("https://sheltered-wildwood-11509.herokuapp.com/" + TOKEN)
+    updater.bot.set_webhook("" + TOKEN)
     updater.idle()
 
 
