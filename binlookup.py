@@ -1,26 +1,54 @@
 """
-    TelegramCCToolsBot - Bot for educational purposes
-    Copyright (C) 2020  Lanniscaf
+  TOOLS IS BASED IN
+  CCTOOLS - Multi Tools of Carding, EDUCATIONAL PURPOSES.
+  Copyright (C) 2020  
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as published
-    by the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+  DISCLAIMER: This file is for informational and educational purposes only. 
+  We are not responsible for any misuse applied to it. All responsibility falls on the user
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
+  ||================================================================================||
+  || FRAGMENTS USED FROM https://github.com/Lanniscaf/cctools/blob/master/cctools.py||
+  ||================================================================================||
 
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-    Contact: paolanderfederico@gmail.com
-    FULL LICENSE: https://github.com/Lanniscaf/tb/blob/master/LICENSE
-    """
+  Adapted BY lanniscaf ALL RIGHTS RESERVED
+  """
 import requests, json, re
 from bs4 import BeautifulSoup
 
+def bincheck(bino):
+    binom= str(bino)
+    try:
+        bino= binom.replace("x","")
+        bino= bino.replace("X","")
+        bino= bino.split("|")[0]
+    except:
+        pass
+    bino = str(re.sub('([a-zA-Z]){1,}', '', bino))
+    if(len(str(bino))<6):
+        return 'Invalid Bin'
+    if(len(str(bino))>6):
+        bino=bino[:6]
+    url = 'https://bincheck.io/bin/{0}'.format(bino)
+    data = {}
+    page = requests.post(url, data=data)
+    page = BeautifulSoup(page.content, 'html.parser')
+    try:
+        bindata = page.find("div", attrs={"class":"card-primary"})
+        bindata = bindata.find("div", attrs={"class":"card-body"}).table.tbody
+        bindata = bindata.findAll('tr')
+    except:
+        return False
+    titles  = []
+    results = []
+    for tr in bindata:
+        params = tr.findAll('td')
+        titles.append((params[0].text).replace('\t',''))
+        results.append((params[1].text).replace('\t',''))
+    myjson = {}
+    for i in range(len(titles)):
+        myjson[titles[i]] = results[i]
+    
+    return myjson
 def alternateS(bino):
   binom= str(bino)
   try:
@@ -45,7 +73,7 @@ def alternateS(bino):
     page = requests.post(url, data=data)
     page.raise_for_status()
   except:
-    return 'Server Error. Try again'
+    return checkear(bino)
   page =BeautifulSoup(page.content,"html.parser")
 
   result=page.find("div", attrs={"id":"result"}).table

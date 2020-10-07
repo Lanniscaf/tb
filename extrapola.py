@@ -1,23 +1,17 @@
 """
-    TelegramCCToolsBot - Bot for educational purposes
-    Copyright (C) 2020  Lanniscaf
+  TOOLS IS BASED IN
+  CCTOOLS - Multi Tools of Carding, EDUCATIONAL PURPOSES.
+  Copyright (C) 2020  
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as published
-    by the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+  DISCLAIMER: This file is for informational and educational purposes only. 
+  We are not responsible for any misuse applied to it. All responsibility falls on the user
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
+  ||================================================================================||
+  || FRAGMENTS USED FROM https://github.com/Lanniscaf/cctools/blob/master/cctools.py||
+  ||================================================================================||
 
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-    Contact: paolanderfederico@gmail.com
-    FULL LICENSE: https://github.com/Lanniscaf/tb/blob/master/LICENSE
-    """
+  Adapted BY lanniscaf ALL RIGHTS RESERVED
+  """
 class Extrapola:
   def __init__(self,bin1='',bin2=''):
     self.bin1=bin1
@@ -99,7 +93,7 @@ class Extrapola:
       #suma
       cuerpo1+=str(int(mul1)+int(mul2))
       self.ccout= cuerpo1
-      for i in range(6):
+      for _ in range(6):
         self.ccout+='x'
       return(self.ccout)
         
@@ -123,7 +117,7 @@ class Extrapola:
       return False
     if(self.bin1[:1] != "3" or self.bin2[:1] != "3"):
       self.ccout=self.bin1[:11]
-      for i in range(5):
+      for _ in range(5):
         self.ccout= self.ccout +"x"
       return(self.ccout)
     else:
@@ -143,7 +137,7 @@ class Extrapola:
       return False
     if(self.bin1[:1] != "3" or self.bin2[:1] != "3"):
       self.ccout=self.bin1[:10]
-      for i in range(6):
+      for _ in range(6):
         self.ccout= self.ccout +"x"
       return(self.ccout)
     else:
@@ -189,6 +183,7 @@ class Extrapola:
 # a = '5047054122454316'
 # b = '5047054142341193'
 #
+
 # ALL EXTRA METHODS
 # result = Extrapola(a,b).extrapolarTodo()
 #
