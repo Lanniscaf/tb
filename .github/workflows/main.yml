@@ -1,0 +1,21 @@
+name: HEROKU DEPLOY
+on:
+  push:
+    branches: 
+      - master
+  workflow_dispatch:
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Deploy to Heroku
+  # You may pin to the exact commit or the version.
+  # uses: AkhileshNS/heroku-deploy@356f2b1f88ccffe9f5b78fd97dfcfd3605bcd396
+        uses: AkhileshNS/heroku-deploy@v3.11.10
+        with:
+          # This will be used for authentication. You can find it in your heroku homepage account settings
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_email: ${{ secrets.HEROKU_EMAIL }}
+          heroku_app_name: ${{ secrets.APP_NAME }}
+          procfile: true
